@@ -7,10 +7,15 @@
     <title>Top Melons by Ubermelon</title>
   </head>
   <body>
-    <div class="melon-div">
-      <h3>{{ melons[0]['name'] }}</h3>
-      <h2>Loved {{ melons[0]['num_loves'] }} times.</h2>
-      <img src="{{ melons[0]['img'] }}" />
-    </div>
+      <h1>Welcome {{session['current_user']}} </h1>
+      {% for melon in melons %}
+      <div class="melon-div">
+        <h3>{{session['current_user']}}, this is a {{ melons[melon]['name'] }}</h3>
+        <h2>Loved {{ melons[melon]['num_loves'] }} times.</h2>
+        <img src="{{ melons[melon]['img'] }}" />
+      </div>
+      {% endfor %}
   </body>
 </html>
+
+

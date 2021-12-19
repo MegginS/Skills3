@@ -34,8 +34,31 @@ MOST_LOVED_MELONS = {
 }
 
 
-# TODO: replace this comment with your code
+@app.route('/top-melons')
+def show_top_melons():
+    # shows the top-melons template
+    if "current_user" in session and session['current_user'] != "":
+        return render_template("top-melons.html", melons = MOST_LOVED_MELONS)
+    else:
+        return redirect('/')
 
+
+@app.route('/')
+def homepage():
+ 
+    if "current_user" in session and session['current_user'] != "":
+        return redirect('/top-melons')
+    else:
+         # shows the homepage template
+        return render_template("homepage.html")
+
+@app.route('/get-name')
+def get_name():
+    # gets name from user
+    username = request.args.get("name")
+    session['current_user'] = username
+
+    return redirect('/top-melons')
 
 if __name__ == "__main__":
     app.run(
